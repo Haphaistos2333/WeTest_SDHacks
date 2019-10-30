@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <!-- <base href="http://www.wetests.tech/"> -->
+        <title>WeTest Assignment - {{ para['asmtname'] }}</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',
+            filename='css/WeTestWebUI.css') }}">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <script>
+                function showUpload(){
+                    document.getElementById("uploadForm").style.display="block";
+                    document.getElementById("btnShowUpload").style.display="none";
+                }
+            </script>
+    </head>
+    <body>
+        <ul class="navibar">
+            <li class="logoimg"><a href="/"><img
+                        src="{{ url_for('static', filename='img/logo.png') }}"></a></li>
+            <li class="login"><a href="/logout/">Logout</a></li>
+        </ul>
+        <div class="body">
+            <div style="display:block; text-align: center; float: left; padding:
+                1%; width: 48%;">
+                <div style="display:inline-block; width: 80%;
+                    border: 1px solid; padding: 2%; margin-bottom: 2%;
+                    border-radius: 20px;
+                    text-align: left;">
+                    <h1>Assignment {{ para['serialNumber'] }}: {{
+                        para['asmtname'] }}</h1>
+                </div>
+                <div style="display:inline-block; width: 80%;
+                    border: 1px solid; padding: 2%; border-radius: 20px;
+                    text-align: left;">
+                    <h1>Student File</h1>
+                    <h4 style="color: #757575;">Submitted by {{ para['username']
+                        }}</h4>
+                    <div class="w3-code notranslate">
+                        {{ para['stuCode'] }}
+                    </div>
+
+                    <form method="POST" id='uploadForm' action="/asmt/{{ para['serialNumber'] }}/upload/" style="display: none;" enctype="multipart/form-data">
+                        <p>
+                            <label>Py code file: </label>
+                            <input type="file" name="studentCode" size="2048" accept=".py"/>
+                            <input type="submit" value="Upload"/></p>
+                    </form>
+                    <a href="javascript:void(0)" onclick="showUpload()" id="btnShowUpload">Upload Code</a>
+
+                </div>
+            </div>
+
+            <div style="display:block; text-align: left; float: left; padding:
+                1%; width: 48%;">
+                <div style="display:inline-block; width: 80%;
+                    border: 1px solid; padding: 2%; border-radius: 20px;
+                    text-align: left;">
+                    <h1>Your current result</h1>
+                    <ul>
+                        {% for func in para['funcs'] %}
+                        <li>
+                            <h2>{{ func }} failed test cases:
+                                {% for testcase in para['funcs'][func] %}
+                                <a href="#{{ testcase }}">{{ testcase }}</a>
+                                {% endfor %}
+                            </h2>
+                        </li>
+                        {% endfor %}
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

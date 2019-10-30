@@ -1,0 +1,12 @@
+CURR_VERSION = 'a0.0.0'
+
+NEXT_SERIAL = 600
+
+MONGO_HOST = '172.31.3.127'
+MONGO_PORT = 27017
+
+SERVER_HOST = '172.31.3.127'
+SERVER_PORT = 80 
+
+# used to process student file
+STUDENT_TEMP_DIR = 'C:/WeTest/WeTest_SDHacks2020/'

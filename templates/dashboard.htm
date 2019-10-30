@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <base href="http://www.wetests.tech/">
+        <title>WeTest - {{ para['username'] }}</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/WeTestWebUI.css') }}">
+        <script>
+            function showAddAsmt(){
+                document.getElementById("addAsmtForm").style.display="block";
+                document.getElementById("btnShowAddAsmt").style.display="none";
+            }
+        </script>
+    </head>
+    <body>
+        <ul class="navibar">
+            <li class="logoimg"><a href="/"><img src="{{ url_for('static', filename='img/logo.png') }}"></a></li>
+            <li class="login"><a href="/logout/">Logout</a></li>
+        </ul>
+        <div class="body">
+            <div style="display:block; text-align: center; float: left; padding:
+                1%; width: 38%;">
+                <div style="display:inline-block; width: 80%; height: 200px;
+                    border: 5px solid; padding: 5%; border-radius: 20px;
+                    text-align: right;">
+                    <h1>{{ para['username'] }}</h1>
+                    <h4 style="color: #757575;">dashboard</h4>
+                </div>
+            </div>
+            <div style="display:block; text-align: left; float: left; padding:
+                1%; width: 58%;">
+                <h1>Assignment List</h1>
+
+                
+                <form method="GET" id='addAsmtForm' action="/addasmt/" style="display: none;">
+                    {% if para['error'] != None %}
+                        <p style="font-family: sans-serif; color:red;">{{ para['error'] }}</p>
+                    {% endif %}
+                    <p><label>Assignment Code: </label><input type="text" name="serial" id="serial" class="text_field"><input type="submit" value="Add"></p>
+                </form>
+                <a href="javascript:void(0)" onclick="showAddAsmt()" id="btnShowAddAsmt">Add an assignment</a>
+
+                {% if para['error'] != None %}
+                <script>showAddAsmt()</script>
+                {% endif %}
+
+                <ul>
+                    {% for asmt in para['asmts'] %}
+                    <li>
+                        <a href="/asmt/{{ asmt[1] }}">{{ asmt[0] }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <base href="http://www.wetests.tech/">
+        <title>WeTest - Never debug alone.</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/WeTestWebUI.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/index.css') }}">
+    </head>
+    <body>
+        <ul class="navibar">
+            <li class="logoimg"><a href="/"><img src="{{ url_for('static', filename='img/logo.png') }}"></a></li>
+            <li class="login"><a href="/login/">Login / Register</a></li>
+        </ul>
+        <div class="body">
+            <div class="banner">
+                <img style="width:60%; padding:0 80px;" src="{{ url_for('static', filename='img/homepic.png') }}">
+            </div>
+        </div>
+    </body>
+</html>
